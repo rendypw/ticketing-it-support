@@ -5,7 +5,7 @@
 
 <head>
     <title>
-        Nany Gas
+       Ticketing - IT Support
     </title>
     @include('includes.head')
 </head>
