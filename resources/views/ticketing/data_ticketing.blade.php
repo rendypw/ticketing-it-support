@@ -33,21 +33,32 @@
                         <form method="POST" enctype="multipart/form-data" action="/filter">
                             {{ csrf_field() }}
                             <div class="row mb-3">
-                                <a style="font-weight: bolder; font-size: 20px" class="col-sm-6"><span
+                                <a style="font-weight: bolder; font-size: 20px" class="col-sm-4"><span
                                         class="text-muted fw-light">Ticketing /</span> Data Tiket
                                 </a>
                                 @if (auth()->user()->role == 'Admin')
                                     <div class="col-sm-2">
+                                        <select id="filterkategori" name="status" class="form-select">
+                                            <option value="">status</option>
+                                            <option {{ request('status') == 'Open' ? 'selected' : '' }} value="Open">
+                                                Open</option>
+                                            <option {{ request('status') == 'On Progress' ? 'selected' : '' }} value="On Progress">
+                                                On Progress</option>
+                                            <option {{ request('status') == 'Resolved' ? 'selected' : '' }} value="Resolved">
+                                                Resolved</option>
+                                            <option {{ request('status') == 'Closed' ? 'selected' : '' }} value="Closed">Closed</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-2">
                                         <select id="filterkategori" name="kategori" class="form-select">
-                                            <option {{ request('kategori') == 1 ? 'selected' : '' }} value="">
-                                                Filter</option>
-                                            <option {{ request('kategori') == 2 ? 'selected' : '' }} value="1">
+                                            <option value="">Kategori</option>
+                                            <option {{ request('kategori') == 1 ? 'selected' : '' }} value="1">
                                                 Hardware</option>
-                                            <option {{ request('kategori') == 3 ? 'selected' : '' }} value="2">
+                                            <option {{ request('kategori') == 2 ? 'selected' : '' }} value="2">
                                                 Software</option>
-                                            <option {{ request('kategori') == 4 ? 'selected' : '' }} value="3">
+                                            <option {{ request('kategori') == 3 ? 'selected' : '' }} value="3">
                                                 Jaringan</option>
-                                            <option {{ request('kategori') == 5 ? 'selected' : '' }} value="4">Lain
+                                            <option {{ request('kategori') == 4 ? 'selected' : '' }} value="4">Lain
                                                 - Lain</option>
                                         </select>
                                     </div>
