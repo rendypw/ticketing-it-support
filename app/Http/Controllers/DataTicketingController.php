@@ -31,14 +31,20 @@ class DataTicketingController extends Controller
         
     }
     
-    public function filterTicket(Request $request)
+    public function filterTicket(Request $a)
     {
-        $kategori = $request->input('kategori');
-        $tanggal = $request->input('tanggal');
+        $kategori = $a->input('kategori');
+        $tanggal = $a->input('tanggal');
+        $status = $a->input('status');
 
         $query = Ticketing::query()
             ->join('users','ticketing.user_id','=', 'users.id')
             ->join('kategoris','ticketing.kategori_id','=', 'kategoris.id');
+
+        if (!empty($status)) {
+            $query->where('ticketing.status', $status)
+            ->orderBy('ticketing.created_at','desc');
+        }
 
         if (!empty($kategori)) {
             $query->where('ticketing.kategori_id', $kategori)
